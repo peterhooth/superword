@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ APDPlat - Application Product Development Platform
+  ~ Copyright (c) 2013, 杨尚川, yang-shangchuan@qq.com
+  ~
+  ~  This program is free software: you can redistribute it and/or modify
+  ~  it under the terms of the GNU General Public License as published by
+  ~  the Free Software Foundation, either version 3 of the License, or
+  ~  (at your option) any later version.
+  ~
+  ~  This program is distributed in the hope that it will be useful,
+  ~  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~  GNU General Public License for more details.
+  ~
+  ~  You should have received a copy of the GNU General Public License
+  ~  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <filter>
+        <filter-name>AntiRobotFilter</filter-name>
+        <filter-class>org.apdplat.superword.system.AntiRobotFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AntiRobotFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    <filter>
+        <filter-name>HistoryFilter</filter-name>
+        <filter-class>org.apdplat.superword.system.HistoryFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>HistoryFilter</filter-name>
+        <url-pattern>/history/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>WordsFilter</filter-name>
+        <filter-class>org.apdplat.superword.system.WordsFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>WordsFilter</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
+
+    <servlet>
+        <servlet-name>ViewWordServlet</servlet-name>
+        <servlet-class>org.apdplat.superword.system.ViewWordServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>ViewWordServlet</servlet-name>
+        <url-pattern>*.jspx</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>login</servlet-name>
+        <servlet-class>org.apdplat.superword.system.qq.IndexServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>login</servlet-name>
+        <url-pattern>/system/login.jspx</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>after_login</servlet-name>
+        <servlet-class>org.apdplat.superword.system.qq.AfterLoginRedirectServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>after_login</servlet-name>
+        <url-pattern>/system/qq_login_success.jspx</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>InstantTipServlet</servlet-name>
+        <servlet-class>org.apdplat.superword.system.InstantTipServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>InstantTipServlet</servlet-name>
+        <url-pattern>*.instant</url-pattern>
+    </servlet-mapping>
+    
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
